@@ -8,23 +8,30 @@ endif()
 
 include(FetchContent)
 
-FetchContent_Declare(uikit
-  URL "https://github.com/tay10r/glow/archive/refs/tags/v0.2.3.zip"
-  URL_HASH "SHA256=977d949fb8deafa425feb956a99515e0920b8dfa747fd09cfaff349dc8a54015"
+FetchContent_Declare(glow
+  URL "https://github.com/tay10r/glow/archive/refs/tags/v0.3.0.zip"
+  URL_HASH "SHA256=3ea2705da47e9d415f08df1aa1cb69568009a95aefc6814c63bcd50b93e068a0"
 )
 
-FetchContent_MakeAvailable(uikit)
+FetchContent_MakeAvailable(glow)
 
 add_executable(opendrill
-  app.cpp
+  src/app.cpp
+  src/map_widget.h
+  src/map_widget.cpp
+  src/tool.h
+  src/line_tool.h
+  src/line_tool.cpp
+  src/drill.h
+  src/drill.cpp
 )
 
 target_compile_features(opendrill PRIVATE cxx_std_20)
 
 target_link_libraries(opendrill
   PRIVATE
-    uikit::uikit
-    uikit::main
+    glow::glow
+    glow::main
 )
 
 if(EMSCRIPTEN)
